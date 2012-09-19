@@ -3,6 +3,7 @@
 
 #include <QtGui/QApplication>
 #include <QtCore/QFileInfo>
+#include <QtCore/QDir>
 #include "ui_gui.h"
 #include "imagegraphicsitem.h"
 class GUI : public QMainWindow, private Ui::MainWindow
@@ -20,6 +21,7 @@ public:
 private:
   bool m_inprogress;
   bool m_batch;
+  QRegExp m_filename_match;
   QString open_directory;
   QMap<QString, QVariant> args;
   QGraphicsScene *output_scene;
@@ -36,6 +38,7 @@ private slots:
   void open_image();
   void save_output();
   void load_image(QString filename);
+  void add_image(QDir dir, QString filename);
   void save_image(QString filename);
   void setProgress(int value);
   void process_button_clicked();

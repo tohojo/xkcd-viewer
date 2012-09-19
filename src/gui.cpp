@@ -15,10 +15,13 @@
 
 #include "gui.h"
 
+#define IMAGE_SIZE 2048
+
 GUI::GUI(QWidget *parent)
   : QMainWindow(parent),
     m_inprogress(false),
-    m_batch(false)
+    m_batch(false),
+    m_filename_match("(\\d+)([sn])(\\d+)([we]).png")
 {
   setupUi(this);
 
@@ -106,6 +109,7 @@ void GUI::open_image()
 
 void GUI::load_image(QString filename)
 {
+  if(filename.isEmpty()) return;
   QFileInfo fileinfo = QFileInfo(filename);
   if(fileinfo.dir().exists(".")) {
     open_directory = fileinfo.dir().path();
@@ -122,7 +126,35 @@ void GUI::load_image(QString filename)
     msgbox.exec();
     return;
   }
+  input_filename = filename;
+  QDir dir = fileinfo.dir();
+  QStringList filters;
+  filters << "*.png";
+  dir.setNameFilters(filters);
 
+  QStringList names = dir.entryList();
+
+  for(int i = 0; i < names.size(); i++) {
+    add_image(dir,names[i]);
+    emit progress(i/(float)names.size()*100);
+  }
+  emit progress(100);
+
+}
+
+void GUI::add_image(QDir dir, QString filename)
+{
+  QRegExp rx(m_filename_match);
+  int offset_x, offset_y;
+  if(rx.indexIn(filename) > -1) {
+    offset_y = rx.cap(1).toInt()-1;
+    offset_x = rx.cap(3).toInt()-1;
+    if(rx.cap(2) == "s") offset_y *= -1;
+    if(rx.cap(4) == "w") offset_x *= -1;
+
+    qDebug() << "Loading filename" << filename << "to position" << offset_x << "," << offset_y;
+    QImage img(dir.filePath(filename));
+  }
 }
 
 void GUI::save_output()
