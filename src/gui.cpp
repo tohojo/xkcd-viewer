@@ -14,6 +14,7 @@
 #include <QDebug>
 
 #include "gui.h"
+#include "graphicsscene.h"
 
 #define IMAGE_SIZE 2048
 
@@ -27,7 +28,7 @@ GUI::GUI(QWidget *parent)
 
   open_directory = QDir::currentPath();
 
-  output_scene = new QGraphicsScene(this);
+  output_scene = new GraphicsScene(this);
   output_view->setScene(output_scene);
 
 
