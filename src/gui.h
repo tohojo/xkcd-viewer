@@ -5,7 +5,6 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QDir>
 #include "ui_gui.h"
-#include "imagegraphicsitem.h"
 class GUI : public QMainWindow, private Ui::MainWindow
 
 {

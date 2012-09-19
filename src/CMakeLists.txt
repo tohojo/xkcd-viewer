@@ -5,17 +5,13 @@ set(xkcd-viewer_SOURCES
   message-handler.cpp
   gui.cpp
   widgets/graphicsview.cpp
-  widgets/imagegraphicsitem.cpp
-  widgets/poiitem.h
-  widgets/poiitem.cpp
-  widgets/resizingimagelabel.cpp
+  widgets/graphicsscene.cpp
   widgets/signalingdockwidget.cpp)
 set(xkcd-viewer_HEADERS
   message-handler.h
   gui.h
   widgets/graphicsview.h
-  widgets/imagegraphicsitem.h
-  widgets/resizingimagelabel.h
+  widgets/graphicsscene.h
   widgets/signalingdockwidget.h
   )
 
@@ -34,4 +30,4 @@ add_executable(xkcd-viewer
   ${xkcd-viewer_HEADERS_MOC}
   ${xkcd-viewer_FORMS_HEADERS}
   ${xkcd-viewer_SOURCES})
-target_link_libraries(xkcd-viewer ${QT_LIBRARIES} ${OpenCV_LIBS})
+target_link_libraries(xkcd-viewer ${QT_LIBRARIES})
