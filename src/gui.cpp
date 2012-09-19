@@ -151,11 +151,14 @@ void GUI::add_image(QDir dir, QString filename)
   if(rx.indexIn(filename) > -1) {
     offset_y = rx.cap(1).toInt()-1;
     offset_x = rx.cap(3).toInt()-1;
-    if(rx.cap(2) == "s") offset_y *= -1;
+    if(rx.cap(2) == "n") offset_y *= -1;
     if(rx.cap(4) == "w") offset_x *= -1;
 
     qDebug() << "Loading filename" << filename << "to position" << offset_x << "," << offset_y;
-    QImage img(dir.filePath(filename));
+    QPixmap pixmap(dir.filePath(filename));
+    QGraphicsPixmapItem *item = new QGraphicsPixmapItem(pixmap);
+    item->moveBy(offset_x*IMAGE_SIZE, offset_y*IMAGE_SIZE);
+    output_scene->addItem(item);
   }
 }
 
