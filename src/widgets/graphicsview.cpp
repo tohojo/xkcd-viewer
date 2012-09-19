@@ -50,8 +50,8 @@ void GraphicsView::keyPressEvent(QKeyEvent *event)
 void GraphicsView::updateZoom()
 {
   int zoom = transform().m11()*100;
-  if(zoom > 400) {
-    QTransform t = QTransform::fromScale(4.0, 4.0);
+  if(zoom > 100) {
+    QTransform t = QTransform::fromScale(1.0, 1.0);
     setTransform(t);
     return;
   }
