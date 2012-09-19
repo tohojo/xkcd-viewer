@@ -45,6 +45,8 @@ GUI::GUI(QWidget *parent)
 
   connect(this, SIGNAL(progress(int)), SLOT(setProgress(int)));
 
+  connect(processButton, SIGNAL(clicked()), SLOT(process_button_clicked()));
+
   readSettings();
 
 }
@@ -192,10 +194,10 @@ void GUI::save_image(QString filename)
       progressBar->setValue(value);
     if(value < 100) {
       m_inprogress = true;
-      processButton->setText(tr("Cancel processing"));
+      processButton->setDisabled(true);
     } else {
       m_inprogress = false;
-      processButton->setText(tr("Reload"));
+      processButton->setDisabled(false);
     }
   }
 
@@ -204,6 +206,7 @@ void GUI::save_image(QString filename)
     if(m_inprogress) {
       setProgress(100);
     } else {
+      load_image(input_filename);
     }
   }
 
