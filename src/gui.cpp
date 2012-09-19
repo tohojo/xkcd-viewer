@@ -149,6 +149,7 @@ void GUI::add_image(QDir dir, QString filename)
     offset_y = rx.cap(1).toInt()-1;
     offset_x = rx.cap(3).toInt()-1;
     if(rx.cap(2) == "n") offset_y *= -1;
+    else offset_y += 1;
     if(rx.cap(4) == "w") offset_x *= -1;
 
     qDebug() << "Loading filename" << filename << "to position" << offset_x << "," << offset_y;
