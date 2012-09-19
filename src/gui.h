@@ -41,7 +41,7 @@ private slots:
   void process_button_clicked();
 
 signals:
-  void image_changed();
+  void progress(int value);
 };
 
 #endif

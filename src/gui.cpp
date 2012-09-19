@@ -40,6 +40,8 @@ GUI::GUI(QWidget *parent)
   connect(action_open_image, SIGNAL(activated()), this, SLOT(open_image()));
   connect(actionSaveOutput, SIGNAL(activated()), this, SLOT(save_output()));
 
+  connect(this, SIGNAL(progress(int)), SLOT(setProgress(int)));
+
   readSettings();
 
 }
@@ -155,6 +157,7 @@ void GUI::save_image(QString filename)
 
   void GUI::setProgress(int value)
   {
+      progressBar->setValue(value);
     if(value < 100) {
       m_inprogress = true;
       processButton->setText(tr("Cancel processing"));
@@ -168,7 +171,6 @@ void GUI::save_image(QString filename)
   {
     if(m_inprogress) {
       setProgress(100);
-      progressBar->setValue(100);
     } else {
     }
   }
