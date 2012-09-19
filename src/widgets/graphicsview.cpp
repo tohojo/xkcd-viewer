@@ -82,7 +82,7 @@ void GraphicsView::drawForeground(QPainter *painter, const QRectF &/*rect*/)
   QBrush bg = QBrush(QColor::fromRgb(0, 0, 0, 200));
   QPen text = QPen(QColor::fromRgb(220,220,0));
   QFont font("Sans", 10);
-  QString string("Drag to move. Scroll to zoom. Double click to add a POI. Right click on a POI to remove it.");
+  QString string("Drag to move. Scroll to zoom.");
 
 
   // We want to draw in viewport coordinates, so remove the painter
