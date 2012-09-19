@@ -14,15 +14,12 @@ public:
   GUI(QWidget *parent =0);
   ~GUI();
 
-  void set_args(QMap<QString, QVariant> arguments);
   void show();
 
 private:
   bool m_inprogress;
-  bool m_batch;
   QRegExp m_filename_match;
   QString open_directory;
-  QMap<QString, QVariant> args;
   QGraphicsScene *output_scene;
   QString input_filename;
   void readSettings();
@@ -35,12 +32,9 @@ public slots:
 private slots:
   void zoom_output(int value);
   void open_image();
-  void save_output();
   void load_image(QString filename);
   void add_image(QDir dir, QString filename);
-  void save_image(QString filename);
   void setProgress(int value);
-  void process_button_clicked();
 
 signals:
   void progress(int value);

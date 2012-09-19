@@ -1,16 +1,12 @@
 #include <QtGui/QApplication>
 #include <QtGui/QFileDialog>
-#include <QtGui/QImage>
-#include <QtGui/QImageWriter>
 #include <QtGui/QPixmap>
 #include <QtGui/QGraphicsPixmapItem>
-#include <QtGui/QBitmap>
 #include <QtGui/QMessageBox>
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 #include <QtCore/QTime>
 #include <QtCore/QSettings>
-#include <QtCore/QMetaProperty>
 #include <QDebug>
 
 #include "gui.h"
@@ -21,7 +17,6 @@
 GUI::GUI(QWidget *parent)
   : QMainWindow(parent),
     m_inprogress(false),
-    m_batch(false),
     m_filename_match("(\\d+)([sn])(\\d+)([we]).png")
 {
   setupUi(this);
@@ -76,19 +71,6 @@ void GUI::closeEvent(QCloseEvent * event)
   QMainWindow::closeEvent(event);
 }
 
-void GUI::set_args(QMap<QString, QVariant> arguments) {
-  args = arguments;
-
-  if(args.contains("batch"))
-    m_batch = true;
-
-  if(args.contains("input")) {
-    load_image(args.value("input").toString());
-  } else if(m_batch) {
-    qFatal("No input image given for batch mode.");
-  }
-}
-
 
 void GUI::zoom_output(int value)
 {
@@ -116,10 +98,6 @@ void GUI::load_image(QString filename)
   }
 
   if(!fileinfo.exists()) {
-    if(m_batch) {
-      qFatal("File '%s' not found.", filename.toLocal8Bit().data());
-      return;
-    }
     QMessageBox msgbox(QMessageBox::Critical, tr("File not found"),
                        tr("File '%1' was not found.").arg(filename),
                        QMessageBox::Ok, this);
@@ -161,35 +139,6 @@ void GUI::add_image(QDir dir, QString filename)
   }
 }
 
-void GUI::save_output()
-{
-  QString filename = QFileDialog::getSaveFileName(this, tr("Select file name"),
-                                          open_directory,
-                                          tr("Images (*.png *.jpg *.jpeg *.tif)"));
-  if(!filename.isNull()) {
-    save_image(filename);
-  }
-}
-
-void GUI::save_image(QString filename)
-{
-  QFileInfo info(filename);
-
-  QImageWriter writer(filename);
-  /*  if(!writer.write(img)) {
-    if(m_batch) {
-      qFatal("Unable to save output to '%s': %s.",
-             filename.toLocal8Bit().data(), writer.errorString().toLocal8Bit().data());
-      return;
-    }
-    QMessageBox msgbox(QMessageBox::Critical, tr("Unable to save image"),
-                       tr("The output image could not be saved to '%1':\n%2.").arg(filename).arg(writer.errorString()),
-                       QMessageBox::Ok, this);
-    msgbox.exec();
-  } else{
-    qDebug() << "Output image saved to:" << filename;
-    }*/
-}
 
   void GUI::setProgress(int value)
   {
@@ -198,15 +147,6 @@ void GUI::save_image(QString filename)
       m_inprogress = true;
     } else {
       m_inprogress = false;
-    }
-  }
-
-  void GUI::process_button_clicked()
-  {
-    if(m_inprogress) {
-      setProgress(100);
-    } else {
-      load_image(input_filename);
     }
   }
 
