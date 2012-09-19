@@ -54,13 +54,6 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="processButton">
-            <property name="text">
-             <string>Reload</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
@@ -83,7 +76,7 @@
           <number>1</number>
          </property>
          <property name="maximum">
-          <number>400</number>
+          <number>100</number>
          </property>
          <property name="value">
           <number>100</number>
@@ -123,7 +116,6 @@
      <string>&amp;File</string>
     </property>
     <addaction name="action_open_image"/>
-    <addaction name="actionSaveOutput"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
    </widget>
@@ -135,19 +127,8 @@
     <addaction name="action_Textual_output"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuPOIs">
-    <property name="title">
-     <string>&amp;POIs</string>
-    </property>
-    <addaction name="action_Clear_POIs"/>
-    <addaction name="actionSavePOIs"/>
-    <addaction name="actionLoadPOIs"/>
-    <addaction name="separator"/>
-    <addaction name="action_Draw_lines"/>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menu_View"/>
-   <addaction name="menuPOIs"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="SignalingDockWidget" name="textDock">
@@ -206,70 +187,6 @@
    </property>
    <property name="text">
     <string>&amp;Textual output</string>
-   </property>
-  </action>
-  <action name="action_Properties">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>P&amp;roperties</string>
-   </property>
-  </action>
-  <action name="actionProcessors">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Processing functions</string>
-   </property>
-  </action>
-  <action name="actionInput_image">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Input image</string>
-   </property>
-  </action>
-  <action name="action_Clear_POIs">
-   <property name="text">
-    <string>&amp;Clear POIs</string>
-   </property>
-  </action>
-  <action name="actionSaveOutput">
-   <property name="text">
-    <string>&amp;Save output</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionSavePOIs">
-   <property name="text">
-    <string>&amp;Save POIs</string>
-   </property>
-  </action>
-  <action name="actionLoadPOIs">
-   <property name="text">
-    <string>&amp;Load POIs</string>
-   </property>
-  </action>
-  <action name="action_Draw_lines">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Draw lines</string>
    </property>
   </action>
  </widget>

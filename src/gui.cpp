@@ -41,11 +41,8 @@ GUI::GUI(QWidget *parent)
 
   // Saving and loading images & POIs
   connect(action_open_image, SIGNAL(activated()), this, SLOT(open_image()));
-  connect(actionSaveOutput, SIGNAL(activated()), this, SLOT(save_output()));
 
   connect(this, SIGNAL(progress(int)), SLOT(setProgress(int)));
-
-  connect(processButton, SIGNAL(clicked()), SLOT(process_button_clicked()));
 
   readSettings();
 
@@ -197,10 +194,8 @@ void GUI::save_image(QString filename)
       progressBar->setValue(value);
     if(value < 100) {
       m_inprogress = true;
-      processButton->setDisabled(true);
     } else {
       m_inprogress = false;
-      processButton->setDisabled(false);
     }
   }
 
