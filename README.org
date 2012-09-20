@@ -1,0 +1,35 @@
+* XKCD "click and drag" viewer
+
+This is a zoom and pan enabled viewer for XKCD's "click and drag" world
+(http://xkcd.com/1110/). It's built using QT and simple loads in all the tiles
+in a QGraphicsScene, and QT handles the heavy lifting of zooming and panning.
+
+This also means that the application gobbles up ~2,5 gigs of RAM, so it probably
+doesn't run on a 32bit machine, or one with insufficient memory. It runs
+reasonably well on my four year old laptop with 4 gigs of ram, though.
+
+To just see the overview map of the world, go here:
+http://www.mrphlip.com/xkcd1110/ - this application is for offline viewing and
+interactive zoom/pan.
+
+The source code is licensed under GPLv3 (see
+http://www.gnu.org/licenses/gpl.html ) and
+the tiles are (obviously) the original ones from XKCD which are licensed under
+the CC attribution-noncommercial license
+(see http://creativecommons.org/licenses/by-nc/2.5/ ).
+
+
+** Building
+Building requires the QT libraries installed (included the -dev packages for
+ubuntu users), the GCC compiler, GNU make, and CMake. With these dependencies
+installed, check out the source, change into the directory it's in and execute:
+
+==mkdir build && cd build && cmake .. && make==
+
+This should build everything, and the binary should be in build/src/xkcd-viewer
+
+** Running
+Just run the executable, and open one of the tile files from the open dialog.
+The application then scans all files in that directory and loads the ones that
+match the file format regexp. The loading can take a while and a bit of CPU
+power; and of course the aforementioned RAM usage requirements.
