@@ -142,8 +142,10 @@ bool GUI::add_image(QDir dir, QString filename)
     item->moveBy(offset_x*IMAGE_SIZE, offset_y*IMAGE_SIZE);
     output_scene->addItem(item);
     return true;
+  } else {
+    qDebug() << "Not loading filename:" << filename;
+    return false;
   }
-  return false;
 }
 
 
