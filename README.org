@@ -24,7 +24,7 @@ Building requires the QT libraries installed (included the -dev packages for
 ubuntu users), the GCC compiler, GNU make, and CMake. With these dependencies
 installed, check out the source, change into the directory it's in and execute:
 
-==mkdir build && cd build && cmake .. && make==
+=mkdir build && cd build && cmake .. && make=
 
 This should build everything, and the binary should be in build/src/xkcd-viewer
 
