@@ -10,7 +10,8 @@ reasonably well on my four year old laptop with 4 gigs of ram, though.
 
 To just see the overview map of the world, go here:
 http://www.mrphlip.com/xkcd1110/ - this application is for offline viewing and
-interactive zoom/pan.
+interactive zoom/pan. An online Google maps-type version of basically the same
+thing (but probably easier on your RAM) is here: http://xkcd-map.rent-a-geek.de/
 
 The source code is licensed under GPLv3 (see
 http://www.gnu.org/licenses/gpl.html ) and
