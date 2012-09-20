@@ -33,7 +33,7 @@ private slots:
   void zoom_output(int value);
   void open_image();
   void load_image(QString filename);
-  void add_image(QDir dir, QString filename);
+  bool add_image(QDir dir, QString filename);
   void setProgress(int value);
 
 signals:

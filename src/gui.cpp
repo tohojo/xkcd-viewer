@@ -112,15 +112,19 @@ void GUI::load_image(QString filename)
 
   QStringList names = dir.entryList();
 
+  int count = 0;
+
   for(int i = 0; i < names.size(); i++) {
-    add_image(dir,names[i]);
+    if(add_image(dir,names[i])) count++;
     emit progress(i/(float)names.size()*100);
   }
   emit progress(100);
 
+  qDebug() << "Loaded" << count << "tiles taking up a total of" << count*2048*2048 << "pixels and spanning" << output_scene->sceneRect().width() << "x" << output_scene->sceneRect().height() << "pixels";
+
 }
 
-void GUI::add_image(QDir dir, QString filename)
+bool GUI::add_image(QDir dir, QString filename)
 {
   QRegExp rx(m_filename_match);
   int offset_x, offset_y;
@@ -137,7 +141,9 @@ void GUI::add_image(QDir dir, QString filename)
     QGraphicsPixmapItem *item = new QGraphicsPixmapItem(pixmap);
     item->moveBy(offset_x*IMAGE_SIZE, offset_y*IMAGE_SIZE);
     output_scene->addItem(item);
+    return true;
   }
+  return false;
 }
 
 
