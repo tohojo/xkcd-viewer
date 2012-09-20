@@ -126,10 +126,11 @@ void GUI::add_image(QDir dir, QString filename)
   int offset_x, offset_y;
   if(rx.indexIn(filename) > -1) {
     offset_y = rx.cap(1).toInt()-1;
-    offset_x = rx.cap(3).toInt()-1;
+    offset_x = rx.cap(3).toInt();
     if(rx.cap(2) == "n") offset_y *= -1;
     else offset_y += 1;
     if(rx.cap(4) == "w") offset_x *= -1;
+    else offset_x -= 1;
 
     qDebug() << "Loading filename" << filename << "to position" << offset_x << "," << offset_y;
     QPixmap pixmap(dir.filePath(filename));
