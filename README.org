@@ -1,8 +1,8 @@
 * XKCD "click and drag" viewer
 
 This is a zoom and pan enabled viewer for XKCD's "click and drag" world
-(http://xkcd.com/1110/). It's built using QT and simple loads in all the tiles
-in a QGraphicsScene, and QT handles the heavy lifting of zooming and panning.
+(http://xkcd.com/1110/). It's built using Qt and simply loads in all the tiles
+in a QGraphicsScene, and Qt handles the heavy lifting of zooming and panning.
 
 This also means that the application gobbles up ~2,5 gigs of RAM, so it probably
 doesn't run on a 32bit machine, or one with insufficient memory. It runs
@@ -20,7 +20,7 @@ the CC attribution-noncommercial license
 
 
 ** Building
-Building requires the QT libraries installed (included the -dev packages for
+Building requires the Qt libraries installed (included the -dev packages for
 ubuntu users), the GCC compiler, GNU make, and CMake. With these dependencies
 installed, check out the source, change into the directory it's in and execute:
 
